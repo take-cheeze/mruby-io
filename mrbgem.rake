@@ -13,4 +13,8 @@ MRuby::Gem::Specification.new('mruby-io') do |spec|
   if build.kind_of?(MRuby::CrossBuild) && %w(x86_64-w64-mingw32 i686-w64-mingw32).include?(build.host_target)
     spec.linker.libraries += ['ws2_32']
   end
+
+  if File.exist? "#{MRUBY_ROOT}/mrbgems/mruby-metaprog"
+    spec.add_test_dependency 'mruby-metaprog', core: 'mruby-metaprog'
+  end
 end
